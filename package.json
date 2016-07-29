@@ -1,0 +1,23 @@
+{
+  "name": "pokemon_nests",
+  "version": "0.0.0",
+  "description": "The Goal of this project is to discover Pokemon Nests. These are high concentrations of a perticular type of Pokemons.",
+  "main": "index.js",
+  "dependencies": {
+    "pokego-scanner": "^0.1.7"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/BlakeTacklind/PokemonNests.git"
+  },
+  "author": "Blake Tacklind",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/BlakeTacklind/PokemonNests/issues"
+  },
+  "homepage": "https://github.com/BlakeTacklind/PokemonNests#readme"
+}
