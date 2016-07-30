@@ -85,14 +85,30 @@ var logElement = function(p, k){
 	fs.appendFileSync(dataFile, p[k]+',');
 }
 
+var nextScan = function(num, next, timeout){
+	if(next){
+		num++;
+		if(num >= list.length){
+			num = 0;
+			run++;
+		}
+	}
+
+	setTimeout(()=>{scan(num)}, timeout);
+	return num;
+}
+
 var scan = function(num){
 	var c = trans(list[num]);
 	var coord = {latitude: c[0], longitude:c[1]};
 	// console.log(coord)
 
+	num = nextScan(num, true, 0);
+	return;
+
 	pokegoScan(coord, (err, pokemon)=>{
 		if (err){
-			setTimeout(()=>{scan(num)}, failTimeout);
+			num = nextScan(num, false, failTimeout);
 
 			try{
 				fs.appendFileSync(ErrorFile, new Date().getTime()+" "+run.toString()+" "+num.toString()+" " + err+"\n")
@@ -104,15 +120,7 @@ var scan = function(num){
 			return;
 		};
 
-
-		num++;
-		if(num > list.length){
-			num = 0;
-			run++;
-		}
-
-		setTimeout(()=>{scan(num)}, successTimeout);
-
+		num = nextScan(num, true, successTimeout);
 
 		try {
 			fs.appendFileSync(dataFile, new Date().getTime()+" "+pokemon.length+" "+coord.latitude+" "+coord.longitude+'\n');
@@ -140,10 +148,11 @@ var scan = function(num){
 	});
 }
 
+
 scan(0);
 // console.log(scale, rotate);
 
-// console.log(list.length * .5 / 60);
+// console.log(list[list.length-1]);
 
 // pokegoScan(PaloAlto, (err, pokemon)=>{
 // 	if (err) throw err;
