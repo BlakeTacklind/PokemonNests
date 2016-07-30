@@ -24,8 +24,8 @@ var RectangleValley = [
 var PaloAlto = {latitude:37.441883, longitude:-122.143019};
 var PA = [PaloAlto['latitude'], PaloAlto['longitude']];
 
-var ErrorFile = 'errors.txt';
-var dataFile = 'data.txt';
+var ErrorFile = '../data/errors.txt';
+var dataFile = '../data/data.txt';
 
 
 // console.log(converter.LLtoUSNG(PA[0], PA[1], 6))
